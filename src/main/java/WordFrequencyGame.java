@@ -10,19 +10,16 @@ public class WordFrequencyGame {
     public static final String DELIMITER = "\n";
 
     public String getResult(String sentence) {
-              try {
-                  List<WordFrequency> wordCountList = calculateWordFrequency(sentence);
-                  wordCountList.sort((word1, word2) -> word2.getCount() - word1.getCount());
-
-                  return buildWordFrequencyResult(wordCountList);
-              }
-             catch (Exception e) {
-
-                return CALCULATE_ERROR;
-            }
+        try {
+            List<WordFrequency> wordCountList = calculateWordFrequency(sentence);
+            wordCountList.sort((word1, word2) -> word2.getCount() - word1.getCount());
+            return buildWordFrequencyResult(wordCountList);
+        } catch (Exception e) {
+            return CALCULATE_ERROR;
+        }
     }
 
-    private String buildWordFrequencyResult(List<WordFrequency> wordCountList){
+    private String buildWordFrequencyResult(List<WordFrequency> wordCountList) {
         StringJoiner wordFrequencyResult = new StringJoiner(DELIMITER);
         for (WordFrequency word : wordCountList) {
             wordFrequencyResult.add(buildWordFrequencyLine(word));
@@ -34,7 +31,7 @@ public class WordFrequencyGame {
         return String.format("%s %d", word.getWord(), word.getCount());
     }
 
-    private List<WordFrequency> calculateWordFrequency(String sentence){
+    private List<WordFrequency> calculateWordFrequency(String sentence) {
         List<String> words = Arrays.asList(sentence.split(WHITE_SPACE_REGEX));
 
         HashSet<String> uniqueWords = new HashSet<>(words);
