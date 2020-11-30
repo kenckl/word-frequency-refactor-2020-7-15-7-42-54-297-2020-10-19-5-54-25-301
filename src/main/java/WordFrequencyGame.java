@@ -13,30 +13,17 @@ public class WordFrequencyGame {
     public static final String DELIMITER = "\n";
 
     public String getResult(String sentence) {
-            try {
-                String[] words = sentence.split(WHITE_SPACE_REGEX);
+              try {
+                  List<WordFrequency> wordCountList = calculateWordFrequency(sentence);
+                  wordCountList.sort((word1, word2) -> word2.getCount() - word1.getCount());
 
-                List<WordFrequency> WordFrequencyList = new ArrayList<>();
-                for (String word : words) {
-                    WordFrequencyList.add(new WordFrequency(word, 1));
-                }
-
-                Map<String, List<WordFrequency>> map = getListMap(WordFrequencyList);
-
-                List<WordFrequency> wordCountList = new ArrayList<>();
-                for (Map.Entry<String, List<WordFrequency>> entry : map.entrySet()) {
-                      wordCountList.add(new WordFrequency(entry.getKey(), entry.getValue().size()));
-                }
-
-                wordCountList.sort((word1, word2) -> word2.getCount() - word1.getCount());
-
-                StringJoiner wordFrequencyResult = new StringJoiner(DELIMITER);
-                for (WordFrequency word : wordCountList) {
-                    wordFrequencyResult.add(buildWordFrequencyLine(word));
-                }
-                return wordFrequencyResult.toString();
-            } catch (Exception e) {
-
+                  StringJoiner wordFrequencyResult = new StringJoiner(DELIMITER);
+                  for (WordFrequency word : wordCountList) {
+                      wordFrequencyResult.add(buildWordFrequencyLine(word));
+                  }
+                  return wordFrequencyResult.toString();
+              }
+             catch (Exception e) {
 
                 return CALCULATE_ERROR;
             }
@@ -46,6 +33,23 @@ public class WordFrequencyGame {
         return String.format("%s %d", word.getWord(), word.getCount());
     }
 
+    private List<WordFrequency> calculateWordFrequency(String sentence){
+        String[] words = sentence.split(WHITE_SPACE_REGEX);
+
+        List<WordFrequency> WordFrequencyList = new ArrayList<>();
+        for (String word : words) {
+            WordFrequencyList.add(new WordFrequency(word, 1));
+        }
+
+        Map<String, List<WordFrequency>> map = getListMap(WordFrequencyList);
+
+        List<WordFrequency> wordCountList = new ArrayList<>();
+        for (Map.Entry<String, List<WordFrequency>> entry : map.entrySet()) {
+            wordCountList.add(new WordFrequency(entry.getKey(), entry.getValue().size()));
+        }
+
+        return wordCountList;
+    }
 
     private Map<String, List<WordFrequency>> getListMap(List<WordFrequency> wordFrequencyList) {
         Map<String, List<WordFrequency>> map = new HashMap<>();
