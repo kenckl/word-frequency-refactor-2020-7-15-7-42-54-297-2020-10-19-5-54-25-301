@@ -13,17 +13,16 @@ public class WordFrequencyGame {
     public static final String DELIMITER = "\n";
 
     public String getResult(String sentence) {
-        if (sentence.split(WHITE_SPACE_REGEX).length == 1) {
-            return sentence + " 1";
-        } else {
+//        if (sentence.split(WHITE_SPACE_REGEX).length == 1) {
+//            return sentence + " 1";
+//        } else {
             try {
                 //split the input string with 1 to n pieces of spaces
                 String[] words = sentence.split(WHITE_SPACE_REGEX);
 
                 List<WordFrequency> WordFrequencyList = new ArrayList<>();
                 for (String word : words) {
-                    WordFrequency wordFrequency = new WordFrequency(word, 1);
-                    WordFrequencyList.add(wordFrequency);
+                    WordFrequencyList.add(new WordFrequency(word, 1));
                 }
 
                 //get the map for the next step of sizing the same word
@@ -46,7 +45,7 @@ public class WordFrequencyGame {
 
                 return CALCULATE_ERROR;
             }
-        }
+        //}
     }
 
     private String buildWordFrequencyLine(WordFrequency word) {
