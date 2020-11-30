@@ -1,3 +1,5 @@
+import org.graalvm.compiler.word.Word;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,20 +13,16 @@ public class WordFrequencyGame {
     public static final String DELIMITER = "\n";
 
     public String getResult(String sentence) {
-
-
         if (sentence.split(WHITE_SPACE_REGEX).length == 1) {
             return sentence + " 1";
         } else {
-
             try {
-
                 //split the input string with 1 to n pieces of spaces
                 String[] words = sentence.split(WHITE_SPACE_REGEX);
 
                 List<WordFrequency> WordFrequencyList = new ArrayList<>();
-                for (String s : words) {
-                    WordFrequency wordFrequency = new WordFrequency(s, 1);
+                for (String word : words) {
+                    WordFrequency wordFrequency = new WordFrequency(word, 1);
                     WordFrequencyList.add(wordFrequency);
                 }
 
@@ -33,15 +31,13 @@ public class WordFrequencyGame {
 
                 List<WordFrequency> wordCountList = new ArrayList<>();
                 for (Map.Entry<String, List<WordFrequency>> entry : map.entrySet()) {
-                    WordFrequency wordFrequency = new WordFrequency(entry.getKey(), entry.getValue().size());
-                    wordCountList.add(wordFrequency);
+                      wordCountList.add(new WordFrequency(entry.getKey(), entry.getValue().size()));
                 }
-                WordFrequencyList = wordCountList;
 
-                WordFrequencyList.sort((word1, word2) -> word2.getCount() - word1.getCount());
+                wordCountList.sort((word1, word2) -> word2.getCount() - word1.getCount());
 
                 StringJoiner wordFrequencyResult = new StringJoiner(DELIMITER);
-                for (WordFrequency word : WordFrequencyList) {
+                for (WordFrequency word : wordCountList) {
                     String wordFrequencyLine = word.getWord() + " " + word.getCount();
                     wordFrequencyResult.add(wordFrequencyLine);
                 }
