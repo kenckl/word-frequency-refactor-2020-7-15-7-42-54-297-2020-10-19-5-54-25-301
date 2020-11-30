@@ -32,7 +32,7 @@ public class WordFrequencyGame {
 
     private List<WordFrequency> calculateWordFrequency(String sentence){
         List<String> words = Arrays.asList(sentence.split(WHITE_SPACE_REGEX));
-        
+
         HashSet<String> uniqueWords = new HashSet<>(words);
 
         return uniqueWords.stream()
@@ -40,23 +40,4 @@ public class WordFrequencyGame {
                 .collect(Collectors.toList());
 
     }
-
-    private Map<String, List<WordFrequency>> getListMap(List<WordFrequency> wordFrequencyList) {
-        Map<String, List<WordFrequency>> map = new HashMap<>();
-        for (WordFrequency wordFrequency : wordFrequencyList) {
-//       map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
-            if (!map.containsKey(wordFrequency.getWord())) {
-                ArrayList arr = new ArrayList<>();
-                arr.add(wordFrequency);
-                map.put(wordFrequency.getWord(), arr);
-            } else {
-                map.get(wordFrequency.getWord()).add(wordFrequency);
-            }
-        }
-
-
-        return map;
-    }
-
-
 }
