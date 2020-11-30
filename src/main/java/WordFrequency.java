@@ -1,18 +1,18 @@
 public class WordFrequency {
-    private String value;
+    private String word;
     private int count;
 
     public WordFrequency(String w, int i){
-        this.value =w;
+        this.word =w;
         this.count =i;
     }
 
 
-    public String getValue() {
-        return this.value;
+    public String getWord() {
+        return this.word;
     }
 
-    public int getWordCount() {
+    public int getCount() {
         return this.count;
     }
 

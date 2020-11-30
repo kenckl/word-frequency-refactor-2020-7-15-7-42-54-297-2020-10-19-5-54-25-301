@@ -33,11 +33,11 @@ public class WordFrequencyGame {
                 }
                 WordFrequencyList = wordCountList;
 
-                WordFrequencyList.sort((word1, word2) -> word2.getWordCount() - word1.getWordCount());
+                WordFrequencyList.sort((word1, word2) -> word2.getCount() - word1.getCount());
 
                 StringJoiner wordFrequencyResult = new StringJoiner("\n");
                 for (WordFrequency word : WordFrequencyList) {
-                    String wordFrequencyLine = word.getValue() + " " +word.getWordCount();
+                    String wordFrequencyLine = word.getWord() + " " +word.getCount();
                     wordFrequencyResult.add(wordFrequencyLine);
                 }
                 return wordFrequencyResult.toString();
@@ -54,14 +54,14 @@ public class WordFrequencyGame {
         Map<String, List<WordFrequency>> map = new HashMap<>();
         for (WordFrequency wordFrequency : wordFrequencyList){
 //       map.computeIfAbsent(input.getValue(), k -> new ArrayList<>()).add(input);
-            if (!map.containsKey(wordFrequency.getValue())){
+            if (!map.containsKey(wordFrequency.getWord())){
                 ArrayList arr = new ArrayList<>();
                 arr.add(wordFrequency);
-                map.put(wordFrequency.getValue(), arr);
+                map.put(wordFrequency.getWord(), arr);
             }
 
             else {
-                map.get(wordFrequency.getValue()).add(wordFrequency);
+                map.get(wordFrequency.getWord()).add(wordFrequency);
             }
         }
 
