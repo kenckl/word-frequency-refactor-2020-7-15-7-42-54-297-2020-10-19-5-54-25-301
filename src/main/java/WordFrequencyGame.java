@@ -14,16 +14,20 @@ public class WordFrequencyGame {
                   List<WordFrequency> wordCountList = calculateWordFrequency(sentence);
                   wordCountList.sort((word1, word2) -> word2.getCount() - word1.getCount());
 
-                  StringJoiner wordFrequencyResult = new StringJoiner(DELIMITER);
-                  for (WordFrequency word : wordCountList) {
-                      wordFrequencyResult.add(buildWordFrequencyLine(word));
-                  }
-                  return wordFrequencyResult.toString();
+                  return buildWordFrequencyResult(wordCountList);
               }
              catch (Exception e) {
 
                 return CALCULATE_ERROR;
             }
+    }
+
+    private String buildWordFrequencyResult(List<WordFrequency> wordCountList){
+        StringJoiner wordFrequencyResult = new StringJoiner(DELIMITER);
+        for (WordFrequency word : wordCountList) {
+            wordFrequencyResult.add(buildWordFrequencyLine(word));
+        }
+        return wordFrequencyResult.toString();
     }
 
     private String buildWordFrequencyLine(WordFrequency word) {
