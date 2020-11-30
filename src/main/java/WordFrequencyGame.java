@@ -1,10 +1,7 @@
 import org.graalvm.compiler.word.Word;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.StringJoiner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
 
@@ -34,21 +31,14 @@ public class WordFrequencyGame {
     }
 
     private List<WordFrequency> calculateWordFrequency(String sentence){
-        String[] words = sentence.split(WHITE_SPACE_REGEX);
+        List<String> words = Arrays.asList(sentence.split(WHITE_SPACE_REGEX));
+        
+        HashSet<String> uniqueWords = new HashSet<>(words);
 
-        List<WordFrequency> WordFrequencyList = new ArrayList<>();
-        for (String word : words) {
-            WordFrequencyList.add(new WordFrequency(word, 1));
-        }
+        return uniqueWords.stream()
+                .map(word -> new WordFrequency(word, Collections.frequency(words, word)))
+                .collect(Collectors.toList());
 
-        Map<String, List<WordFrequency>> map = getListMap(WordFrequencyList);
-
-        List<WordFrequency> wordCountList = new ArrayList<>();
-        for (Map.Entry<String, List<WordFrequency>> entry : map.entrySet()) {
-            wordCountList.add(new WordFrequency(entry.getKey(), entry.getValue().size()));
-        }
-
-        return wordCountList;
     }
 
     private Map<String, List<WordFrequency>> getListMap(List<WordFrequency> wordFrequencyList) {
