@@ -7,9 +7,9 @@ public class WordFrequencyGameTest {
     @Test
     public void should_get_the_1_when_input_the() throws Exception {
         //Given
-        String inputStr = "the";
+        String inputSentence = "the";
         String expectResult = "the 1";
-        validate_Input_words_process_to_expected_word(inputStr, expectResult);
+        validate_Input_words_process_to_expected_word(inputSentence, expectResult);
     }
 
     @Test
