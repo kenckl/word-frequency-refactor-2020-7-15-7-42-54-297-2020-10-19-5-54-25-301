@@ -7,14 +7,15 @@ public class WordFrequencyGame {
     public static final String CALCULATE_ERROR = "Calculate Error";
     public static final String DELIMITER = "\n";
 
-    public String getResult(String sentence) {
+    public String getResult(String sentence) throws CalculateErrorException {
         try {
             List<WordFrequency> wordCountList = calculateWordFrequency(sentence);
             wordCountList.sort((word1, word2) -> word2.getCount() - word1.getCount());
             return buildWordFrequencyResult(wordCountList);
         } catch (Exception e) {
-            return CALCULATE_ERROR;
+            System.out.println(e.getLocalizedMessage());
         }
+        throw new CalculateErrorException();
     }
 
     private String buildWordFrequencyResult(List<WordFrequency> wordCountList) {
