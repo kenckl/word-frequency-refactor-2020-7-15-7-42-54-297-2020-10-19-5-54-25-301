@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class WordFrequencyGameTest {
 
     @Test
-    public void should_get_the_1_when_input_the() throws Exception, CalculateErrorException {
+    public void should_get_the_1_when_input_the() throws CalculateErrorException {
         //Given
         String inputSentence = "the";
         String expectResult = "the 1";
@@ -14,7 +14,7 @@ public class WordFrequencyGameTest {
     }
 
     @Test
-    public void should_process_two_words() throws Exception, CalculateErrorException {
+    public void should_process_two_words() throws CalculateErrorException {
         //Given
         String inputStr = "the is";
         String expectResult = "the 1\nis 1";
@@ -22,7 +22,7 @@ public class WordFrequencyGameTest {
     }
 
     @Test
-    public void should_process_two_words_with_special_spaces() throws Exception, CalculateErrorException {
+    public void should_process_two_words_with_special_spaces() throws CalculateErrorException {
         //Given
         String inputStr = "the      is";
         String expectResult = "the 1\nis 1";
@@ -30,7 +30,7 @@ public class WordFrequencyGameTest {
     }
 
     @Test
-    public void should_process_two_words_with_special_enter() throws Exception, CalculateErrorException {
+    public void should_process_two_words_with_special_enter() throws CalculateErrorException {
         //Given
         String inputStr = "the   \n   is";
         String expectResult = "the 1\nis 1";
@@ -38,7 +38,7 @@ public class WordFrequencyGameTest {
     }
 
     @Test
-    public void should_pracess_two_same_words_with_sorted() throws Exception, CalculateErrorException {
+    public void should_process_two_same_words_with_sorted() throws CalculateErrorException {
         //Given
         String inputStr = "the the is";
         String expectResult = "the 2\nis 1";
@@ -46,7 +46,7 @@ public class WordFrequencyGameTest {
     }
 
     @Test
-    public void should_process_sorted_with_count_descending() throws Exception, CalculateErrorException {
+    public void should_process_sorted_with_count_descending() throws CalculateErrorException {
         //Given
         String inputStr = "the is is";
         String expectResult = "is 2\nthe 1";
@@ -62,10 +62,9 @@ public class WordFrequencyGameTest {
     }
 
     @Test
-    public void should_throw_calculationerror_exception_given_null_sentence() throws Exception, CalculateErrorException {
+    public void should_throw_calculateError_exception_given_null_sentence() {
         //Given
         String sentence = null;
-        String expectResult = " ";
         WordFrequencyGame game = new WordFrequencyGame();
 
         //When

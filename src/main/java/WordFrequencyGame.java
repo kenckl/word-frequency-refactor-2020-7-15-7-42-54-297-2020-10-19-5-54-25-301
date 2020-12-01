@@ -4,7 +4,6 @@ import java.util.stream.Collectors;
 public class WordFrequencyGame {
 
     public static final String WHITE_SPACE_REGEX = "\\s+";
-    public static final String CALCULATE_ERROR = "Calculate Error";
     public static final String DELIMITER = "\n";
 
     public String getResult(String sentence) throws CalculateErrorException {
@@ -18,6 +17,7 @@ public class WordFrequencyGame {
         throw new CalculateErrorException();
     }
 
+    // use stream api
     private String buildWordFrequencyResult(List<WordFrequency> wordCountList) {
         StringJoiner wordFrequencyResult = new StringJoiner(DELIMITER);
         for (WordFrequency word : wordCountList) {
@@ -26,8 +26,8 @@ public class WordFrequencyGame {
         return wordFrequencyResult.toString();
     }
 
-    private String buildWordFrequencyLine(WordFrequency word) {
-        return String.format("%s %d", word.getWord(), word.getCount());
+    private String buildWordFrequencyLine(WordFrequency wordFrequency) {
+        return String.format("%s %d", wordFrequency.getWord(), wordFrequency.getCount());
     }
 
     private List<WordFrequency> calculateWordFrequency(String sentence) {
